@@ -127,11 +127,11 @@ class KNNText:
     def score(self):
         pass
     ### Demo bằng Education
-    data = loadCsv('Education.csv')
+data = loadCsv('Education.csv')
 # loại bỏ các kí tự đặc biệt
-    data['Text'] = data['Text'].apply(lambda x: x.replace(',', ''))
-    data['Text'] = data['Text'].apply(lambda x: x.replace('.', ''))
-    data['Text'][1]
+data['Text'] = data['Text'].apply(lambda x: x.replace(',', ''))
+data['Text'] = data['Text'].apply(lambda x: x.replace('.', ''))
+data['Text'][1]
 X_train, y_train, X_test, y_test = splitTrainTest(data, 0.25)
 print(len(X_train))
 print(len(X_test))
@@ -139,5 +139,14 @@ words_train_fre, bags = get_words_frequency(X_train)
 print(bags)
 print(len(bags))
 print(words_train_fre)
-
+words_train_fre
+words_test_fre = transform(X_test, bags)
+words_test_fre
+knn = KNNText(k = 2)
+knn.fit(words_train_fre.values, y_train)
+pred_ =  pd.DataFrame(pd.DataFrame(knn.predict(words_test_fre.values)).values.reshape(-1), columns = ['Predict'])
+pred_.index = range(1, len(pred_) + 1)
+y_test.index = range(1, len(y_test)+ 1)
+y_test = y_test.to_frame(name = 'Actual')
+pd.concat([pred_, y_test], axis = 1)
         
