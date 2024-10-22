@@ -19,3 +19,5 @@ matrix , solvers , matplotlib.pyplot , numpy
 - Tối ưu hóa với Quadratic Programming (QP)
 - Support Vectors
 
+Bai them
+![alt text](<Screenshot 2024-10-22 174516.png>)
